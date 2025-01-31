@@ -4,7 +4,7 @@ body {
     font-family: 'Roboto', sans-serif;
     background-color: #f5efef;
     color: #130101;
-    line-height: 1;
+    line-height: 1.5;
 }
 
 h1 {
@@ -28,7 +28,7 @@ p {
 }
 
 .section {
-    padding: 50px 20px;
+    padding: 50px 200px;
     text-align: center;
 }
 
