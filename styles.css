@@ -22,7 +22,7 @@ h3 {
     font-size: 2rem;
     }
 p {
-    text-align: center;
+    text-align: left;
     max-width: 600px; 
     margin: 0 auto 1em auto;
 }
