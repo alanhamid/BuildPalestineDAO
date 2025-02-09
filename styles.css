@@ -98,9 +98,9 @@ p {
 }
 
 .about-section .column-image1 {
-    max-width: 10%;
+    max-width: 20%;
     height: auto;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     border-radius: 10px;
 }
 .about-section .column-image2 {
