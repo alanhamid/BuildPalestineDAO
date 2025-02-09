@@ -84,7 +84,7 @@ p {
 
 .about-section .column {
     flex: 1 1 45%;
-    max-width: 900px;
+    max-width: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -97,13 +97,18 @@ p {
     align-items: center;
 }
 
-.about-section .column-image {
-    max-width: 100%;
+.about-section .column-image1 {
+    max-width: 20%;
     height: auto;
     margin-bottom: 20px;
     border-radius: 10px;
 }
-
+.about-section .column-image2 {
+    max-width: 60%;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
 /* Tokenomics Section */
 .tokenomics-content {
     display: flex;
