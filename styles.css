@@ -109,7 +109,7 @@ h1, h2, h3, p {
 }
 
 .mission-list li::before {
-    content: "✅";
+    content: "";
     font-size: 1.3rem;
     color: #f4c542;
     margin-right: 10px;
