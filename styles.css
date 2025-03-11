@@ -1,105 +1,65 @@
-/* General Styles */
+/* Global Website Background */
 body {
     font-family: 'Tajawal', sans-serif;
-        background-color: linear-gradient(120deg, #1a2a6c, #b21f1f, #fdbb2d);
-
-    color: linear-gradient(120deg, #1a2a6c, #b21f1f, #fdbb2d);
+    background: linear-gradient(120deg, #1a2a6c, #b21f1f, #fdbb2d); /* Same gradient as Tokenomics */
+    color: #fff;
     margin: 0;
     padding: 0;
 }
 
+/* Ensure all sections have proper contrast */
+section {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+/* Make text and content readable */
 h1, h2, h3 {
-    font-family: 'Amiri', serif;
-    color: #6b4226;
+    font-family: 'Scheherazade New', serif;
+    color: #f4c542; /* Golden yellow for high contrast */
 }
 
-h2 {
-    font-size: 2rem;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.container {
-    max-width: 900px;
-    margin: auto;
-    padding: 20px;
-}
-
-/* Hero Section */
-.hero {
-    background: url('desert-pattern.png') no-repeat center center/cover;
-    color: #fff;
-    text-align: center;
-    padding: 60px 20px;
-}
-
-.hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-}
-
-.hero-text {
+p, ul, li {
     font-size: 1.1rem;
-    margin-bottom: 15px;
-}
-
-.hero-image img {
-    max-width: 100%;
-    height: auto;
-}
-
-.cta-buttons {
-    margin-top: 20px;
-}
-
-.btn {
-    background: #c09966;
     color: #fff;
-    padding: 10px 20px;
+    line-height: 1.8;
+}
+
+/* Add a slight shadow to improve text contrast */
+h1, h2, h3, p {
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
+}
+
+/* Buttons with solid contrast */
+.btn {
+    background: #f4c542;
+    color: #1a2a6c;
+    padding: 12px 25px;
     border-radius: 5px;
     text-decoration: none;
     font-weight: bold;
+    display: inline-block;
+    margin: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .btn:hover {
-    background: #a3774e;
+    background: #d1a537;
 }
 
-.btn-alt {
-    background: #6b4226;
+/* Tokenomics Section (No change, since it's already using the gradient) */
+.tokenomics-section {
+    background: transparent; /* Since body has the gradient */
 }
 
-/* About Section */
-.about-section {
-    background: #f3ead6;
-    padding: 50px 20px;
-}
-
-.about-section h2 {
+/* Footer */
+footer {
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
     text-align: center;
+    padding: 20px;
 }
 
-.mission-list {
-    list-style: none;
-    padding: 0;
-    text-align: left;
-    margin: 20px 0;
-}
-
-.mission-list li {
-    font-size: 1.1rem;
-    color: #333;
-    padding: 10px 0;
-    display: flex;
-    align-items: flex-start;
-}
-
-.mission-list li::before {
-    content: "✅";
-    font-size: 1.3rem;
-    color: #28a745;
-    margin-right: 10px;
-}
 
 /* Tokenomics Section */
 .tokenomics-section {
@@ -193,13 +153,6 @@ tr:hover {
     }
 }
 
-/* Footer */
-footer {
-    background: #2b2b2b;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-}
 
 .social-links a {
     color: #c09966;
