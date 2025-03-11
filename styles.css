@@ -250,7 +250,7 @@ tr:hover {
 }
 
 .economic-features li::before {
-    content: "✅ ";
+    content: " ";
     font-size: 1.3rem;
     color: #f4c542;
 }
