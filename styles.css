@@ -3,7 +3,7 @@ body {
     font-family: 'Tajawal', sans-serif;
         background-color: linear-gradient(120deg, #1a2a6c, #b21f1f, #fdbb2d);
 
-    color: #2b2b2b;
+    color: linear-gradient(120deg, #1a2a6c, #b21f1f, #fdbb2d);
     margin: 0;
     padding: 0;
 }
