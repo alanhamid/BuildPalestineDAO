@@ -142,11 +142,13 @@ h1, h2, h3, p {
 }
 
 /* ✅ Table Styles - Responsive & Readable */
+/* ✅ Responsive Table Fix */
 .table-container {
-    overflow-x: auto;
+    overflow-x: auto;  /* Enables horizontal scrolling on small screens */
     max-width: 100%;
 }
 
+/* ✅ Table Layout Fix */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -155,15 +157,67 @@ table {
     margin: 20px 0;
     border-radius: 8px;
     overflow: hidden;
-    display: block;
+    display: table;
+    table-layout: fixed;  /* Ensures even column distribution */
 }
 
+/* ✅ Adjust column widths */
 th, td {
     padding: 12px;
     text-align: left;
     border-bottom: 1px solid #ddd;
-    white-space: nowrap;  /* Ensures text remains in a single line */
+    white-space: normal;  /* Allows text to wrap properly */
+    word-wrap: break-word; /* Ensures text does not overflow */
 }
+
+/* ✅ Ensure proper width distribution */
+th:nth-child(1), td:nth-child(1) { width: 20%; } /* Category */
+th:nth-child(2), td:nth-child(2) { width: 10%; } /* % of Supply */
+th:nth-child(3), td:nth-child(3) { width: 15%; } /* Tokens Allocated */
+th:nth-child(4), td:nth-child(4) { width: 25%; } /* Purpose */
+th:nth-child(5), td:nth-child(5) { width: 30%; } /* Vesting & Release Details */
+
+/* ✅ Table Header */
+th {
+    background: #6b4226;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* ✅ Improve readability for long text */
+td {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* ✅ Responsive Design */
+@media (max-width: 1024px) {
+    th, td {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .table-container {
+        display: block;
+        overflow-x: auto;
+        width: 100%;
+    }
+
+    table {
+        display: block;
+        width: 100%;
+    }
+
+    th, td {
+        font-size: 0.9rem;
+        padding: 8px;
+        white-space: nowrap; /* Prevents text from wrapping excessively on small screens */
+    }
+}
+
 
 th {
     background: #6b4226;
