@@ -100,6 +100,98 @@ h2 {
     margin-right: 10px;
 }
 
+/* Tokenomics Section */
+.tokenomics-section {
+    background: linear-gradient(120deg, #1a2a6c, #b21f1f, #fdbb2d);
+    color: #fff;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.tokenomics-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-family: 'Scheherazade New', serif;
+    color: #f4c542;
+}
+
+.tokenomics-image img {
+    width: 100%;
+    max-width: 450px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(255, 215, 0, 0.5);
+    margin-bottom: 20px;
+}
+
+/* Table Styles */
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    color: #222;
+    margin: 20px 0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background: #6b4226;
+    color: #fff;
+}
+
+tr:hover {
+    background: rgba(255, 215, 0, 0.2);
+}
+
+/* Additional Economic Features */
+.economic-features {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.economic-features li {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: rgba(255, 215, 0, 0.1);
+    border-radius: 5px;
+    line-height: 1.6;
+}
+
+.economic-features li::before {
+    content: "✅ ";
+    font-size: 1.3rem;
+    color: #f4c542;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    table {
+        font-size: 0.9rem;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+
+    .economic-features {
+        text-align: center;
+    }
+}
+
 /* Footer */
 footer {
     background: #2b2b2b;
