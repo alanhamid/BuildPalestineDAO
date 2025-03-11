@@ -109,6 +109,58 @@ p {
     margin-bottom: 20px;
     border-radius: 10px;
 }
+
+/* about-section2 */
+.about-section2 {
+    background: #f8f9fa;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.container2 {
+    max-width: 900px;
+    margin: auto;
+}
+
+.about-content2 h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.about-content2 p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.about-content2 h3 {
+    font-size: 1.5rem;
+    color: #222;
+    margin-top: 30px;
+}
+
+.about-content2 ul {
+    list-style: none;
+    padding: 0;
+}
+
+.about-content2 ul li {
+    font-size: 1.1rem;
+    color: #444;
+    padding: 10px 0;
+}
+
+.about-content2 ul li strong {
+    color: #222;
+}
+
+
+/* ----------------------- */
+
+
+
 /* Tokenomics Section */
 .tokenomics-content {
     display: flex;
