@@ -363,4 +363,16 @@ footer {
     border-radius: 10px;
     box-shadow: 0px 5px 15px rgba(255, 215, 0, 0.5);
 }
+/* Live Feed Placeholder Section */
+.image-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.live-feed-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(255, 215, 0, 0.5);
+}
 
