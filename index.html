@@ -239,6 +239,88 @@
         </ul>
     </div>
 </section>
+        <!-- Donate & Burn Section -->
+    <section id="donate">
+        <h2>🔥 Donate USDC & Automatically Burn SHARIA Tokens</h2>
+        <button class="btn" onclick="donateAndBurn()">Donate USDC & Burn SHARIA</button>
+    </section>
+
+    <!-- JavaScript Integration -->
+    <script>
+    const { Connection, PublicKey, clusterApiUrl, Transaction } = solanaWeb3;
+
+    const SHARIA_MINT = new PublicKey("FnpGBpqDLtzyUKmRDG1JneLBfY62v1iZtGiKqA3DaTFU");
+    const USDC_MINT = new PublicKey("Es9vMFrzaCER3CeP1VXkxNDTULeS8ZhV4EUdk2Q9KrXF"); 
+    const BURN_ADDRESS = new PublicKey("11111111111111111111111111111111");
+    const DAO_USDC_WALLET = new PublicKey("YOUR_DAO_USDC_RECEIVING_ADDRESS");
+    const connection = new Connection(clusterApiUrl("mainnet-beta"), "confirmed");
+
+    async function donateAndBurn() {
+        if (!window.solana) {
+            alert("Please install a Solana wallet like Phantom!");
+            return;
+        }
+
+        try {
+            const provider = window.solana;
+            await provider.connect();
+
+            const wallet = provider.publicKey;
+            const usdcAmount = parseFloat(prompt("Enter USDC amount to donate:", "10"));
+            if (isNaN(usdcAmount) || usdcAmount <= 0) {
+                alert("Invalid donation amount!");
+                return;
+            }
+
+            const usdcDecimals = 6;
+            const shariaDecimals = 9;
+            const usdcLamports = usdcAmount * (10 ** usdcDecimals);
+            const shariaAmountToBurn = usdcAmount * 1000; // 1 USDC = 1000 SHARIA
+            const shariaLamports = shariaAmountToBurn * (10 ** shariaDecimals);
+
+            const fromUsdcAccount = await splToken.getAssociatedTokenAddress(USDC_MINT, wallet);
+            const fromShariaAccount = await splToken.getAssociatedTokenAddress(SHARIA_MINT, wallet);
+            const burnShariaAccount = await splToken.getAssociatedTokenAddress(SHARIA_MINT, BURN_ADDRESS);
+            const daoUsdcAccount = await splToken.getAssociatedTokenAddress(USDC_MINT, DAO_USDC_WALLET);
+
+            let tx = new Transaction();
+
+            tx.add(
+                splToken.createTransferInstruction(
+                    fromUsdcAccount, 
+                    daoUsdcAccount,
+                    wallet, 
+                    usdcLamports
+                )
+            );
+
+            tx.add(
+                splToken.createTransferInstruction(
+                    fromShariaAccount,
+                    burnShariaAccount,
+                    wallet,
+                    shariaLamports
+                )
+            );
+
+            tx.recentBlockhash = (await connection.getLatestBlockhash()).blockhash;
+            tx.feePayer = wallet;
+
+            const signedTx = await provider.signTransaction(tx);
+            const signature = await connection.sendRawTransaction(signedTx.serialize());
+
+            await connection.confirmTransaction(signature, "confirmed");
+
+            alert(`🎉 Donation of ${usdcAmount} USDC successful!\n🔥 Burned ${shariaAmountToBurn} SHARIA.\nTransaction ID: ${signature}`);
+
+        } catch (error) {
+            console.error(error);
+            alert("Transaction failed: " + error.message);
+        }
+    }
+    </script>
+
+
 
 <!-- Footer -->
     <footer>
