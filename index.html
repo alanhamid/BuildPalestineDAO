@@ -34,7 +34,19 @@
                  class="live-feed-image">
         </div>
     </div>
+</section><!-- Buy SCGT Section -->
+<section id="buy-scgt">
+    <div class="container">
+        <h2>Invest in Sharia Coin Governance ($SCGT)</h2>
+        <p>Each SCGT token costs <strong>$1,000 USDC</strong> and grants you governance rights in the DAO, along with an airdrop of 1 million SHARIA tokens.</p>
+        <button class="btn" onclick="buySCGT()">Purchase 1 SCGT ($1000 USDC)</button>
+    </div>
 </section>
+
+<!-- Include Solana web3.js -->
+<script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
+<script src="https://unpkg.com/@solana/spl-token@latest/lib/index.iife.js"></script>
+
 
 <!-- Add this JavaScript before the closing </body> tag -->
 <script>
@@ -320,6 +332,80 @@
     }
     </script>
 
+<script>
+const { Connection, PublicKey, Transaction, clusterApiUrl } = solanaWeb3;
+
+const USDC_MINT = new PublicKey("Es9vMFrzaCER3CeP1VXkxNDTUL"); // Use real USDC mint address
+const DAO_USDC_WALLET = new PublicKey("YOUR_DAO_USDC_WALLET_ADDRESS"); // Replace with your USDC wallet address
+const SCGT_MINT = new PublicKey("YOUR_SCGT_MINT_ADDRESS"); // SCGT Mint Address
+const DAO_SCGT_WALLET = new PublicKey("DAO_SCGT_HOLDER_WALLET_ADDRESS"); // Your wallet holding SCGT tokens
+const connection = new Connection(clusterApiUrl("mainnet-beta"), "confirmed");
+
+async function buySCGT() {
+    if (!window.solana) {
+        alert("Please install the Phantom wallet extension.");
+        return;
+    }
+
+    try {
+        await window.solana.connect();
+        const wallet = window.solana.publicKey;
+
+        // Define amounts
+        const usdcDecimals = 6;
+        const scgtDecimals = 0; // SCGT typically 0 decimals (1 SCGT = 1 Token)
+        const usdcAmount = 1000;
+        const usdcLamports = usdcAmount * (10 ** usdcDecimals);
+
+        const buyerUSDCAccount = await splToken.getAssociatedTokenAddress(USDC_MINT, wallet);
+        const daoUSDCAccount = await splToken.getAssociatedTokenAddress(USDC_MINT, DAO_USDC_WALLET);
+
+        const daoSCGTAccount = await splToken.getAssociatedTokenAddress(SCGT_MINT, DAO_SCGT_HOLDER_WALLET);
+        const buyerSCGTAccount = await splToken.getAssociatedTokenAddress(SCGT_MINT, wallet);
+
+        let transaction = new Transaction();
+
+        // Transfer 1000 USDC from buyer to DAO
+        transaction.add(
+            splToken.createTransferInstruction(
+                buyerUSDCAccount,
+                daoUSDCAccount,
+                wallet,
+                usdcLamports,
+                [],
+                splToken.TOKEN_PROGRAM_ID
+            )
+        );
+
+        // Transfer 1 SCGT from DAO to buyer
+        transaction.add(
+            splToken.createTransferInstruction(
+                daoSCGTAccount,
+                buyerSCGTAccount,
+                DAO_SCGT_HOLDER_WALLET,
+                1 * (10 ** scgtDecimals),
+                [],
+                splToken.TOKEN_PROGRAM_ID
+            )
+        );
+
+        transaction.feePayer = wallet;
+        transaction.recentBlockhash = (await connection.getLatestBlockhash()).blockhash;
+
+        // User signs the transaction (USDC transfer)
+        const signedTransaction = await window.solana.signTransaction(transaction);
+
+        // Send transaction
+        const txId = await connection.sendRawTransaction(signedTransaction.serialize());
+        await connection.confirmTransaction(txId, "confirmed");
+
+        alert(`🎉 Successfully purchased 1 SCGT token!\nTransaction ID: ${signedTransaction.signature}`);
+    } catch (error) {
+        console.error(error);
+        alert("Transaction failed: " + error.message);
+    }
+}
+</script>
 
 
 <!-- Footer -->
