@@ -375,4 +375,25 @@ footer {
     border-radius: 10px;
     box-shadow: 0px 5px 15px rgba(255, 215, 0, 0.5);
 }
+#buy-scgt {
+    padding: 40px;
+    background: rgba(0,0,0,0.4);
+    color: #fff;
+    text-align: center;
+    font-family: 'Amiri', serif;
+}
+
+.btn {
+    background: #f4c542;
+    color: #000;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+}
+
+.btn:hover {
+    background: #d1a537;
+}
 
